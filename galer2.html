@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pecel — Secret Gallery</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      font-size: 14px;
+      animation: floatUp 4s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 0.8; }
+      100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
+    }
+
+    .gate {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(12px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 99999;
+    }
+
+    .gate-box {
+      text-align: center;
+      padding: 25px 30px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: white;
+    }
+
+    .gate-box button {
+      margin-top: 10px;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body class="secret-page">
+
+  <div id="gate" class="gate">
+    <div class="gate-box">
+      <h2>kapan yah</h2>
+      <button onclick="openGate()">buka</button>
+    </div>
+  </div>
+
+  <div class="orb1"></div>
+  <div class="orb2"></div>
+
+  <nav>
+    <div class="nav-logo">✦Pecel✦</div>
+    <ul class="nav-links">
+      <li><a href="galer2.html" class="active">Hidden Gallery</a></li>
+      <li><a href="index.html">Home</a></li>
+    </ul>
+  </nav>
+
+  <div class="gallery-page-wrap">
+    <div class="gallery-page-header">
+      <div class="page-badge">✦ Secret Photos</div>
+      <h1>Hidden Gallery</h1>
+      <p>halow dealexavirgia</p>
+    </div>
+
+    <audio id="bg-music" loop>
+      <source src="danil.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="photo-grid">
+      <div class="photo-slot"><img src="anjay.png" draggable="false"></div>
+      <div class="photo-slot"><img src="b.jpeg" draggFable="false"></div>
+      <div class="photo-slot"><img src="c.jpeg" draggable="false"></div>
+      <div class="photo-slot"><img src="d.jpeg" draggable="false"></div>
+      <div class="photo-slot"><img src="p.png" draggable="false"></div>
+      <div class="photo-slot"><img src="f.jpeg" draggable="false"></div>
+      <div class="photo-slot"><img src="g.jpeg" draggable="false"></div>
+    </div>
+  </div>
+
+  <script>
+    const music = document.getElementById("bg-music");
+    music.volume = 0.1;
+
+    function openGate() {
+      document.getElementById("gate").style.display = "none";
+      music.play().catch(() => {});
+    }
+
+    function createSparkle() {
+      const el = document.createElement("div");
+      el.className = "sparkle";
+
+      const symbols = ["💖", "💗", "💘", "🤍"];
+      el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+      el.style.left = Math.random() * window.innerWidth + "px";
+      el.style.top = (window.innerHeight - 50) + "px";
+
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 4000);
+    }
+
+    setInterval(createSparkle, 300);
+  </script>
+
+</body>
+
+</html>
